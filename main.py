@@ -1,7 +1,7 @@
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 
 from jinja2 import Environment, FileSystemLoader, select_autoescape
-from datetime import datetime
+import datetime
 import pandas
 import pprint
 import collections
@@ -29,7 +29,7 @@ def main():
     template = env.get_template('template.html')
 
     company_foundation_year = 1920
-    current_year = datetime.now().year
+    current_year = datetime.datetime.now().year
 
     years = current_year - company_foundation_year
 

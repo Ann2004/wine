@@ -1,7 +1,7 @@
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 
 from jinja2 import Environment, FileSystemLoader, select_autoescape
-import datetime
+from datetime import datetime
 import pandas
 import pprint
 import collections
@@ -28,10 +28,10 @@ def main():
 
     template = env.get_template('template.html')
 
-    company_foundation = datetime.date(year=1920, month=1, day=1)
-    todays_date = datetime.date.today()
+    company_foundation_year = 1920
+    current_year = datetime.now().year
 
-    years = todays_date.year - company_foundation.year
+    years = current_year - company_foundation_year
 
     excel_wines_df = pandas.read_excel(
         'wine.xlsx', 

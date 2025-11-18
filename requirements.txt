@@ -2,3 +2,5 @@ Jinja2==3.1.6
 pandas==2.3.3
 xlrd==2.0.2
 openpyxl==3.1.5
+python-dotenv==1.2.1
+ConfigArgParse==1.7.1

@@ -5,6 +5,8 @@ import datetime
 import pandas
 import pprint
 import collections
+from dotenv import load_dotenv
+import configargparse
 
 
 def get_year_form(years):
@@ -22,6 +24,17 @@ def get_year_form(years):
   
       
 def main():
+    load_dotenv()
+    
+    parser = configargparse.ArgParser(description='Введите путь к файлу с данными')
+    parser.add(
+        '-p',
+        '--path', 
+        help='Путь к файлу', 
+        env_var='DATA_FILE_PATH', 
+        default='wine.xlsx')
+    data_file_path = parser.parse_args().path
+    
     env = Environment(
         loader=FileSystemLoader('.'),
         autoescape=select_autoescape(['html', 'xml']))
@@ -34,9 +47,9 @@ def main():
     years = current_year - company_foundation_year
 
     excel_wines_df = pandas.read_excel(
-        'wine.xlsx', 
+        data_file_path,
         sheet_name='Лист1',
-        na_values=' ', 
+        na_values=' ',
         keep_default_na=False)
     
     wines = excel_wines_df.to_dict(orient='records')
